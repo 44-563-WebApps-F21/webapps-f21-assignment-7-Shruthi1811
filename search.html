@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Search Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <h1>Animal hunt Shruthi Battu</h1>
+    <div class="container border bg-warning">
+        <p>Click on the squares to search for wild life</p>
+    </div>
+    <div class="container border bg-info">
+        <p id="tries">Number of tries is zero.</p>
+    </div>
+    <div class="container border bg-secondary">
+        <p id="distance">Distance is unknown</p>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+        </div>
+        <div class="row">
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+        </div>
+        <div class="row">
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+        </div>
+        <div class="row">
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+            <div class="col"><img class="img-fluid" src="./Images/starter.jpg" alt="starter" height="200" width="200"></div>
+        </div>
+    </div>
+
+    <script>
+        var ids = []
+        for (var i = 0; i < 24; i++)
+            ids.push("pic-" + i)
+
+        var triesCount = 0
+        var animalLocation = 13
+        function check(position) {
+            var picId = ids[position]
+            pic_src = document.getElementById(picId)
+            if (position == animalLocation)
+                pic_src.src = "./Images/animal.jpg"
+            else
+                pic_src.src = "./Images/hole.jpg"
+
+            triesCount++
+            document.getElementById("tries").innerHTML = "Number of tries is " + triesCount
+            document.getElementById("distance").innerHTML = "Distance is " + distance(position, animalLocation)
+        }
+        function distance(pos1, pos2) {
+            var horDist = Math.abs(getPosition(pos1)[0] - getPosition(pos2)[0])
+            var vertDist = Math.abs(getPosition(pos1)[1] - getPosition(pos2)[1])
+            if (horDist > vertDist)
+                return horDist
+            else
+                return vertDist
+        }
+        function getPosition(value) {
+            var eleVal = 0
+            for(var i=0; i<4; i++){
+                for(var j=0; j<6; j++){
+                    if(eleVal == value){
+                        return [i+1, j+1]
+                    }
+                    eleVal++
+                }
+            }
+        }
+
+        function newGame(){
+            triesCount = 0
+            animalLocation = Math.floor(Math.random()*23 + 0)
+            document.getElementById("tries").innerHTML = "Number of tries is 0."
+            for(var i=0; i<24; i++){
+                if(ids[i] == ids[animalLocation])
+                    document.getElementById(ids[i]).src = "animal.jpg"
+                else
+                    document.getElementById(ids[i]).src = "starter.jpg"
+            }
+            }
+        
+        
+        
+    </script>
+
+</body>
+
+</html>
