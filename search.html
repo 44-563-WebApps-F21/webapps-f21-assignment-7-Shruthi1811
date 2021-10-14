@@ -67,7 +67,7 @@
         <script>
             var ids = []
             for (var i = 0; i < 24; i++)
-                ids.push("pic-" + i)
+                ids.push("img-" + i)
     
             var triesCount = 0
             var animalLocation = 13
@@ -75,9 +75,9 @@
                 var picId = ids[position]
                 pic_src = document.getElementById(picId)
                 if (position == animalLocation)
-                    pic_src.src = "./Images/animal.jpg"
+                    img_src.src = "./Images/animal.jpg"
                 else
-                    pic_src.src = "./Images/hole.jpg"
+                    img_src.src = "./Images/hole.jpg"
     
                 triesCount++
                 document.getElementById("tries").innerHTML = "Number of tries is " + triesCount
@@ -103,6 +103,34 @@
                 }
             }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             function newGame(){
                 triesCount = 0
                 animalLocation = Math.floor(Math.random()*23 + 0)
